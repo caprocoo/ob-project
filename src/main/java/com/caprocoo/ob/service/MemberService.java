@@ -3,6 +3,8 @@ package com.caprocoo.ob.service;
 import com.caprocoo.ob.domain.Member;
 import com.caprocoo.ob.repository.MemberRepository;
 import com.caprocoo.ob.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;

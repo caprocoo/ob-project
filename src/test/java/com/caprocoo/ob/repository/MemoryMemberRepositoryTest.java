@@ -4,6 +4,7 @@ import com.caprocoo.ob.domain.Member;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * -----------------------------------------------------------
  * 2022-12-08        caprocoo       최초 생성
  */
+
 public class MemoryMemberRepositoryTest {
 
     MemoryMemberRepository repository = new MemoryMemberRepository();

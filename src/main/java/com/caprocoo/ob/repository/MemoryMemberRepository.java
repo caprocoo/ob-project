@@ -1,6 +1,7 @@
 package com.caprocoo.ob.repository;
 
 import com.caprocoo.ob.domain.Member;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
