@@ -2,7 +2,10 @@ package com.caprocoo.ob.controller;
 
 import com.caprocoo.ob.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 2022-12-09        caprocoo       최초 생성
  */
 @RestController
+@RequestMapping("/api/member")
 public class MemberController {
     private final MemberService memberService;
 
@@ -25,6 +29,18 @@ public class MemberController {
     @Autowired
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
+    }
+
+    /**
+     * methodName : memberJoin
+     * author : Hyeonseong Oh
+     * description : 회원가입 POST
+     *
+     * @return string
+     */
+    @RequestMapping(value = "join", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String memberJoin(){
+        return "";
     }
 
 
