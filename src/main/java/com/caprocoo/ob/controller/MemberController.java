@@ -43,6 +43,24 @@ public class MemberController {
         return "";
     }
 
+    @RequestMapping(value = "login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String memberLogin(){
+        return "";
+    }
 
+    @RequestMapping(value = "update", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String memberUpdate(){
+        return "";
+    }
+
+    @RequestMapping(value = "delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String memberDelete(){
+        return "";
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String memberFindOne(){
+        return "";
+    }
 
 }
