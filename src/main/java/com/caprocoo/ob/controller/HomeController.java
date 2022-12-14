@@ -23,14 +23,34 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/api/hello")
+@RequestMapping("/api/test")
 public class HomeController {
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public HashMap<String, String>  hello(){
+    public HashMap<String, String> home(){
         HashMap<String, String> hello = new HashMap<>();
         hello.put("title", "OBONG");
         return hello;
     }
 
+    @RequestMapping(value = "/news", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public HashMap<String, String> news(){
+        HashMap<String, String> news = new HashMap<>();
+        news.put("title", "news");
+        return news;
+    }
+
+    @RequestMapping(value = "/ask", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public HashMap<String, String> ask(){
+        HashMap<String, String> ask = new HashMap<>();
+        ask.put("title", "ask");
+        return ask;
+    }
+
+    @RequestMapping(value = "/jobs", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public HashMap<String, String> jobs(){
+        HashMap<String, String> jobs = new HashMap<>();
+        jobs.put("title", "jobs");
+        return jobs;
+    }
 
 }
