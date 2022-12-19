@@ -1,10 +1,15 @@
 package com.caprocoo.ob.service;
 
 import com.caprocoo.ob.domain.Member;
+import com.caprocoo.ob.repository.MemberRepository;
 import com.caprocoo.ob.repository.MemoryMemberRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,22 +25,15 @@ import static org.junit.jupiter.api.Assertions.*;
  * -----------------------------------------------------------
  * 2022-12-08        caprocoo       최초 생성
  */
+@SpringBootTest
+@Transactional
 class MemberServiceTest {
 
-    MemberService memberService;
-    MemoryMemberRepository memberRepository;
-
-    @BeforeEach
-    public void beforeEach(){
-        memberRepository = new MemoryMemberRepository();
-        memberService  = new MemberService(memberRepository);
-    }
+    @Autowired MemberService memberService;
+    @Autowired
+    MemberRepository memberRepository;
 
 
-    @AfterEach
-    public void afterEach(){
-        memberRepository.clearStore();
-    }
 
     @Test
     void 회원가입() {

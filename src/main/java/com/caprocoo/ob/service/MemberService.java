@@ -2,9 +2,7 @@ package com.caprocoo.ob.service;
 
 import com.caprocoo.ob.domain.Member;
 import com.caprocoo.ob.repository.MemberRepository;
-import com.caprocoo.ob.repository.MemoryMemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +18,7 @@ import java.util.Optional;
  * -----------------------------------------------------------
  * 2022-12-08        caprocoo       최초 생성
  */
+@Transactional
 public class MemberService {
     private final MemberRepository memberRepository;
 
@@ -37,7 +36,6 @@ public class MemberService {
      */
     public Long join(Member member) {
         validateDuplicateMember(member);
-
         memberRepository.save(member);
         return member.getId();
     }
