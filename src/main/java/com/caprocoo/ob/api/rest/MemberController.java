@@ -1,9 +1,12 @@
-package com.caprocoo.ob.controller;
+package com.caprocoo.ob.api.rest;
 
-import com.caprocoo.ob.service.MemberService;
+import com.caprocoo.ob.api.ApiResponseDto;
+import com.caprocoo.ob.exception.BackendException;
+import com.caprocoo.ob.service.member.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/member")
 public class MemberController {
+    @Qualifier("memberSerive")
     private final MemberService memberService;
 
     // 아래의 Autowired는 생성자 주입이라고 한다.
@@ -38,6 +42,15 @@ public class MemberController {
      *
      * @return string
      */
+    @RequestMapping(value = "{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ApiResponseDto getMemberId(@PathVariable(value = "id") String id) throws BackendException {
+
+        try {
+            return new ApiResponseDto(true, memberService.findByMemberId(id));
+        } catch (Exception e) {
+            throw new BackendException(" member 조회 중 오류발생", e);
+        }
+    }
     @RequestMapping(value = "join", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public String memberJoin(){
         return "";
@@ -58,9 +71,5 @@ public class MemberController {
         return "";
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public String memberFindOne(){
-        return "";
-    }
 
 }

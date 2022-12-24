@@ -2,14 +2,12 @@ package com.caprocoo.ob;
 
 import com.caprocoo.ob.repository.JpaMemberRepository;
 import com.caprocoo.ob.repository.MemberRepository;
-import com.caprocoo.ob.repository.MemoryMemberRepository;
-import com.caprocoo.ob.service.MemberService;
+import com.caprocoo.ob.service.member.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 /**
  * packageName    : com.caprocoo.ob
@@ -38,15 +36,15 @@ public class SpringConfig {
 
 
 
-    @Bean
-    public MemberService memberService(){
-        return new MemberService(memberRepository());
-    }
-
-    @Bean
-    public MemberRepository memberRepository(){
-        return new JpaMemberRepository(em);
-    }
+//    @Bean
+//    public MemberService memberService(){
+//        return new MemberService(memberRepository());
+//    }
+//
+//    @Bean
+//    public MemberRepository memberRepository(){
+//        return new JpaMemberRepository(em);
+//    }
 
 
 }

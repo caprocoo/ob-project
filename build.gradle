@@ -29,9 +29,13 @@ dependencies {
 
 	//Database
 	implementation group: 'com.oracle.database.jdbc', name: 'ojdbc8', version: '21.1.0.0'
-
 	//jpa
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	//security
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	//jwt
+	implementation 'com.auth0:java-jwt:4.2.1'
+
 
 }
 
