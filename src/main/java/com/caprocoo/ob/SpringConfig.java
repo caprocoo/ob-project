@@ -1,10 +1,6 @@
 package com.caprocoo.ob;
 
-import com.caprocoo.ob.repository.JpaMemberRepository;
-import com.caprocoo.ob.repository.MemberRepository;
-import com.caprocoo.ob.service.member.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.persistence.EntityManager;

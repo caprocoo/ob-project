@@ -22,24 +22,24 @@ import javax.persistence.*;
  */
 @Getter
 @Setter
-@Entity(name = "ob_member")
+@Entity(name = "OB_MEMBER")
 @NoArgsConstructor
 public class Member extends CrudEntity {
 
     @Id
-    @Column(name = "member_id", unique = true)
+    @Column(name = "MEMBER_ID", unique = true)
     private String memberId;
-    @Column(name = "member_name")
+    @Column(name = "MEMBER_NAME")
     private String memberName;
-    @Column(name = "tel_no_first")
+    @Column(name = "TEL_NO_FIRST")
     private String telNoFirst;
-    @Column(name = "tel_no_second")
+    @Column(name = "TEL_NO_SECOND")
     private String telNoSecond;
-    @Column(name = "tel_no_third")
+    @Column(name = "TEL_NO_THIRD")
     private String telNoThird;
-    @Column(name = "member_email")
+    @Column(name = "MEMBER_EMAIL")
     private String memberEmail;
-    @Column(name = "member_pwd")
+    @Column(name = "MEMBER_PWD")
     private String memberPwd;
 
     @Builder

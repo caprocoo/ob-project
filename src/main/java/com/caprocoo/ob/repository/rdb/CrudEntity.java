@@ -36,8 +36,10 @@ public class CrudEntity extends LoginUser implements Serializable {
 
     public CrudEntity() {
         super();
-        this.regId = getUsername();
-        this.updId = getUsername();
+//        this.regId = getUsername();
+//        this.updId = getUsername();
+        this.regId = "getUsername";
+        this.updId = "getUsername";
     }
 
     public CrudEntity(String regId, String updId) {

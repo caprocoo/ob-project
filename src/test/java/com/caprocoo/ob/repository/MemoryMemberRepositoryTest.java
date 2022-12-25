@@ -22,7 +22,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class MemoryMemberRepositoryTest {
 
-    MemoryMemberRepository repository = new MemoryMemberRepository();
 
 //    @AfterEach
 //    public void afterEach(){

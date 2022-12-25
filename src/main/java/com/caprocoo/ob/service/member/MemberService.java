@@ -1,13 +1,11 @@
 package com.caprocoo.ob.service.member;
 
-import com.caprocoo.ob.repository.rdb.member.Member;
 import com.caprocoo.ob.repository.MemberRepository;
+import com.caprocoo.ob.repository.rdb.member.Member;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.Optional;
 
 /**
  * packageName    : com.caprocoo.ob.service
@@ -21,20 +19,24 @@ import java.util.Optional;
  * 2022-12-08        caprocoo       최초 생성
  */
 @Transactional
-@Service("memberService")
+@Service
 public class MemberService {
 
-    @Qualifier("memberRepository")
+    @Autowired
     private final MemberRepository memberRepository;
 
+    @Autowired
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
 
     public Member findByMemberId(String id){
-
-        return memberRepository.findByMemberId(id);
+        Member member = memberRepository.findByMemberId(id);
+        return member;
     }
+
+
+
 
 //    /**
 //     * methodName : join

@@ -2,6 +2,7 @@ package com.caprocoo.ob.api.rest;
 
 import com.caprocoo.ob.api.ApiResponseDto;
 import com.caprocoo.ob.exception.BackendException;
+import com.caprocoo.ob.repository.rdb.member.Member;
 import com.caprocoo.ob.service.member.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -25,12 +26,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/member")
 public class MemberController {
-    @Qualifier("memberSerive")
+
+
+
+    @Autowired
     private final MemberService memberService;
 
     // 아래의 Autowired는 생성자 주입이라고 한다.
     // 생성자 주입이란 생성자를 통해 MemberService가 MemberController에 주입이 되는 것을 말한다.
-    @Autowired
+
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
     }
@@ -44,9 +48,8 @@ public class MemberController {
      */
     @RequestMapping(value = "{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ApiResponseDto getMemberId(@PathVariable(value = "id") String id) throws BackendException {
-
         try {
-            return new ApiResponseDto(true, memberService.findByMemberId(id));
+            return new ApiResponseDto(true, this.memberService.findByMemberId(id)) ;
         } catch (Exception e) {
             throw new BackendException(" member 조회 중 오류발생", e);
         }

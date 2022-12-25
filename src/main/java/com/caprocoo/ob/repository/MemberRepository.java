@@ -20,7 +20,6 @@ import java.util.Optional;
  * 2022-12-08        caprocoo       최초 생성
  */
 @Repository
-@Qualifier("memberRepository")
 public interface MemberRepository extends CrudRepository<Member, String> {
     Member save(Member member);
     Member findByMemberId(String id);
