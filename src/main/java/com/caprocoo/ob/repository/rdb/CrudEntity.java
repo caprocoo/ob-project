@@ -1,6 +1,5 @@
 package com.caprocoo.ob.repository.rdb;
 
-import com.caprocoo.ob.config.LoginUser;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -13,7 +12,7 @@ import java.sql.Timestamp;
 
 @MappedSuperclass
 @Getter
-public class CrudEntity extends LoginUser implements Serializable {
+public class CrudEntity implements Serializable {
 
     @Column(name = "REG_ID", nullable = false, updatable = false)
     protected String regId;

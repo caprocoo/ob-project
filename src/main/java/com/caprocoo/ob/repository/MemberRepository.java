@@ -1,8 +1,8 @@
 package com.caprocoo.ob.repository;
 
+import com.caprocoo.ob.repository.rdb.CrudRepository;
 import com.caprocoo.ob.repository.rdb.member.Member;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.repository.CrudRepository;
+
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -22,6 +22,7 @@ import java.util.Optional;
 @Repository
 public interface MemberRepository extends CrudRepository<Member, String> {
     Member save(Member member);
-    Member findByMemberId(String id);
+    Optional<Member> findByMemberId(String id);
+    Member findByMemberEmail(String email);
     List<Member> findAll();
 }

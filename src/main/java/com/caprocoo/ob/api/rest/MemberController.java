@@ -2,15 +2,17 @@ package com.caprocoo.ob.api.rest;
 
 import com.caprocoo.ob.api.ApiResponseDto;
 import com.caprocoo.ob.exception.BackendException;
+import com.caprocoo.ob.repository.rdb.TokenInfo;
 import com.caprocoo.ob.repository.rdb.member.Member;
+import com.caprocoo.ob.service.member.MemberDto;
+import com.caprocoo.ob.service.member.MemberLoginDto;
 import com.caprocoo.ob.service.member.MemberService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * packageName    : com.caprocoo.ob.controller
@@ -23,21 +25,13 @@ import org.springframework.web.bind.annotation.RestController;
  * -----------------------------------------------------------
  * 2022-12-09        caprocoo       최초 생성
  */
+@Slf4j
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/member")
 public class MemberController {
 
-
-
-    @Autowired
     private final MemberService memberService;
-
-    // 아래의 Autowired는 생성자 주입이라고 한다.
-    // 생성자 주입이란 생성자를 통해 MemberService가 MemberController에 주입이 되는 것을 말한다.
-
-    public MemberController(MemberService memberService) {
-        this.memberService = memberService;
-    }
 
     /**
      * methodName : memberJoin
@@ -54,15 +48,22 @@ public class MemberController {
             throw new BackendException(" member 조회 중 오류발생", e);
         }
     }
+
+    @RequestMapping(value = "login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public TokenInfo memberLogin(@RequestBody MemberLoginDto memberLoginDto){
+        String memberId = memberLoginDto.getMemberId();
+        String password = memberLoginDto.getPassword();
+        TokenInfo tokenInfo = memberService.login(memberId, password);
+        return tokenInfo;
+    }
+
+
     @RequestMapping(value = "join", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public String memberJoin(){
         return "";
     }
 
-    @RequestMapping(value = "login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public String memberLogin(){
-        return "";
-    }
+
 
     @RequestMapping(value = "update", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     public String memberUpdate(){
