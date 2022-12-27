@@ -48,9 +48,9 @@ public class Member extends CrudEntity implements UserDetails {
     @Column(name = "MEMBER_PWD", nullable = false)
     private String memberPwd;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @Builder.Default
-    private List<String> roles = new ArrayList<>();
+//    @ElementCollection(fetch = FetchType.EAGER)
+//    @Builder.Default
+//    private List<String> roles = new ArrayList<>();
 
     @Builder
     public Member(String regId, String updId, String memberId, String memberName, String telNoFirst, String telNoSecond, String telNoThird, String memberEmail, String memberPwd) {
@@ -68,11 +68,16 @@ public class Member extends CrudEntity implements UserDetails {
 
     }
 
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        return this.roles.stream()
+//                .map(SimpleGrantedAuthority::new)
+//                .collect(Collectors.toList());
+//    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.roles.stream()
-                .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toList());
+        return null;
     }
 
     @Override

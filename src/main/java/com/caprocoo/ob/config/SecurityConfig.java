@@ -32,6 +32,7 @@ public class SecurityConfig  {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.csrf().disable();
         http
                 // rest api이므로 basic auth 및 csrf 보안을 사용하지 않는다는 설정
                 .httpBasic().disable()
@@ -41,9 +42,9 @@ public class SecurityConfig  {
                 .and()
                 .authorizeRequests()
                 // 해당 API에 대해서는 모든 요청을 허가한다는 설정
-                .antMatchers("/api/member/login").permitAll()
-                // USER 권한이 있어야 요청할 수 있다는 설정
-                .antMatchers("/api/member/test").hasRole("USER")
+                .antMatchers("/api/member/**").permitAll()
+//                // USER 권한이 있어야 요청할 수 있다는 설정
+//                .antMatchers("/api/rez").hasRole("USER")
                 // 이 밖에 모든 요청에 대해서 인증을 필요로 한다는 설정
                 .anyRequest().authenticated()
                 .and()
