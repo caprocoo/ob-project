@@ -3,15 +3,12 @@ package com.caprocoo.ob.api.rest;
 import com.caprocoo.ob.api.ApiResponseDto;
 import com.caprocoo.ob.exception.BackendException;
 import com.caprocoo.ob.repository.rdb.TokenInfo;
-import com.caprocoo.ob.repository.rdb.member.Member;
-import com.caprocoo.ob.service.member.MemberDto;
 import com.caprocoo.ob.service.member.MemberLoginDto;
 import com.caprocoo.ob.service.member.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -27,7 +24,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Slf4j
 @RequiredArgsConstructor
-@RestController
+@Controller
 @RequestMapping("/api/member")
 public class MemberController {
 
