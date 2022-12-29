@@ -1,4 +1,4 @@
--- member create seq
+-- account create seq
 CREATE SEQUENCE member_seq START WITH 1;
 
 CREATE TRIGGER member_bi

@@ -1,14 +1,18 @@
-package com.caprocoo.ob.service.member;
+package com.caprocoo.ob.service.account;
 
-import com.caprocoo.ob.repository.rdb.member.Member;
+import com.caprocoo.ob.repository.rdb.account.Account;
 import com.caprocoo.ob.service.CrudDto;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-
-import javax.persistence.Column;
+import lombok.NoArgsConstructor;
 
 
 @Data
-public class MemberDto extends CrudDto {
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class AccountDto extends CrudDto {
 
     private String memberId;
     private String memberName;
@@ -19,8 +23,8 @@ public class MemberDto extends CrudDto {
     private String memberPwd;
 
     @Override
-    public Member toEntity() {
-        return Member.builder()
+    public Account toEntity() {
+        return Account.builder()
                 .memberId(this.memberId)
                 .memberName(this.memberName)
                 .telNoFirst(this.telNoFirst)

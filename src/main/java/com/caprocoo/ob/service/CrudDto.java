@@ -1,6 +1,6 @@
 package com.caprocoo.ob.service;
 
-import com.caprocoo.ob.repository.rdb.CrudEntity;
+import com.caprocoo.ob.repository.CrudEntity;
 import com.caprocoo.ob.util.DateUtil;
 import lombok.Data;
 import lombok.ToString;

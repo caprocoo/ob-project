@@ -1,11 +1,5 @@
 package com.caprocoo.ob.repository;
 
-import com.caprocoo.ob.repository.rdb.member.Member;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**

@@ -1,10 +1,9 @@
 package com.caprocoo.ob.service;
 
 import com.caprocoo.ob.exception.BackendException;
-import com.caprocoo.ob.exception.ExceptionHandler;
-import com.caprocoo.ob.repository.MemberRepository;
-import com.caprocoo.ob.repository.rdb.CrudRepository;
-import com.caprocoo.ob.service.member.MemberDto;
+import com.caprocoo.ob.repository.CrudRepository;
+import com.caprocoo.ob.repository.rdb.account.AccountRepository;
+import com.caprocoo.ob.service.account.AccountDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,12 +19,9 @@ import javax.persistence.criteria.*;
 import javax.transaction.Transactional;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -428,8 +424,8 @@ public abstract class CrudService {
 
         Class clazz = null;
 
-        if (this.repository instanceof MemberRepository) {
-            clazz = MemberDto.class;
+        if (this.repository instanceof AccountRepository) {
+            clazz = AccountDto.class;
         }
 
         if (clazz == null) {

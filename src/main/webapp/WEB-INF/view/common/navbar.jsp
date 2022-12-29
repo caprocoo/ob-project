@@ -26,10 +26,9 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                 <li class="nav-item"><a class="nav-link" href="/">Main</a></li>
+                <li class="nav-item"><a class="nav-link" href="/memory">Memory</a></li>
                 <li class="nav-item"><a class="nav-link" href="/album">Album</a></li>
                 <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="/board">Board</a></li>
-                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
             </ul>
         </div>
     </div>

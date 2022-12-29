@@ -1,6 +1,9 @@
-package com.caprocoo.ob.service.member;
+package com.caprocoo.ob.service.account;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * packageName    : com.caprocoo.ob.service.member
@@ -14,7 +17,10 @@ import lombok.Data;
  * 2022-12-26        caprocoo       최초 생성
  */
 @Data
-public class MemberLoginDto {
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class AccountLoginDto {
     private String memberId;
     private String password;
 

@@ -19,13 +19,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * 2022-12-28        caprocoo       최초 생성
  */
 @Controller
-@RequestMapping("/board")
-public class BoardController {
+@RequestMapping("/memory")
+public class MemoryController {
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public String boardHome(Model model){
+    public String memoryHome(Model model){
 
-        return "board/main";
+        return "memory/main";
     }
 
 }

@@ -1,4 +1,4 @@
-package com.caprocoo.ob.repository.rdb;
+package com.caprocoo.ob.repository;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;

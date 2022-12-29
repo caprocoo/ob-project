@@ -1,8 +1,9 @@
-package com.caprocoo.ob.repository.rdb;
+package com.caprocoo.ob.service.account;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * packageName    : com.caprocoo.ob.repository.rdb
@@ -18,8 +19,7 @@ import lombok.Data;
 @Builder
 @Data
 @AllArgsConstructor
-public class TokenInfo {
-    private String grantType;       // JWT에 대한 인증 타입 : Bearer
-    private String accessToken;     // accessToken
-    private String refreshToken;    // refreshToken
+@NoArgsConstructor
+public class TokenDto {
+    private String token;
 }

@@ -1,15 +1,7 @@
 package com.caprocoo.ob.service;
 
-import com.caprocoo.ob.repository.rdb.member.Member;
-import com.caprocoo.ob.repository.MemberRepository;
-import com.caprocoo.ob.service.member.MemberService;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
-
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * packageName    : com.caprocoo.ob.service
