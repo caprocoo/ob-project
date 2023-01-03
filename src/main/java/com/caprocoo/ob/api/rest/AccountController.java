@@ -3,11 +3,16 @@ package com.caprocoo.ob.api.rest;
 import com.caprocoo.ob.api.ApiResponseDto;
 import com.caprocoo.ob.exception.BackendException;
 import com.caprocoo.ob.service.account.AccountService;
+import com.caprocoo.ob.service.jwt.AccountDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 /**
  * packageName    : com.caprocoo.ob.controller
@@ -38,20 +43,16 @@ public class AccountController {
 //        }
 //    }
 
-//    @RequestMapping(value = "login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-//    public TokenInfo memberLogin(@RequestBody MemberLoginDto memberLoginDto){
-//        String memberId = memberLoginDto.getMemberId();
-//        String password = memberLoginDto.getPassword();
-//        TokenInfo tokenInfo = memberService.login(memberId, password);
-//        return tokenInfo;
-//    }
+    @RequestMapping(value = "login", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String loginHome(){
 
-
-    @RequestMapping(value = "join", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public String accountJoin(){
-        return "";
+        return "account/login";
     }
 
+    @PostMapping("/sign")
+    public ResponseEntity<AccountDto> signup(@Valid @RequestBody AccountDto accountDto) {
+        return ResponseEntity.ok(accountService.signup(accountDto));
+    }
 
 
 

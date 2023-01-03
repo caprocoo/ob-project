@@ -18,7 +18,8 @@ import java.util.Set;
  */
 @Getter
 @Setter
-@Entity(name = "OB_ACCOUNT")
+@Entity
+@Table(name = "OB_ACCOUNT")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -45,7 +46,7 @@ public class Account {
 
     @ManyToMany
     @JoinTable(
-            name = "user_authority",
+            name = "OB_ACCOUNT_AUTHORITY",
             joinColumns = {@JoinColumn(name = "ACCOUNT_ID", referencedColumnName = "ACCOUNT_ID")},
             inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_NAME", referencedColumnName = "AUTHORITY_NAME")})
     private Set<Authority> authorities;

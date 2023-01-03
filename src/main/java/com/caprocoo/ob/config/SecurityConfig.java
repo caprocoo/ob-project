@@ -83,8 +83,11 @@ public class SecurityConfig {
 
                 .and()
                 .authorizeHttpRequests()
-                .antMatchers("/auth/authenticate").permitAll()
+                .antMatchers("/main").permitAll()
+                .antMatchers("/auth/login").permitAll()
+                .antMatchers("/account/**").permitAll()
                 .antMatchers("/album").permitAll()
+                //bootstrap, css, js 허가
                 .antMatchers("/resources/**", "/static/**", "/js/**", "/css/**", "/assets/**", "/img/**", "/favicon.ico", "/about/**", "/logos/**", "/portfolio/**","/team/**").permitAll()
 //                .requestMatchers(PathRequest.toH2Console()).permitAll()
                 .anyRequest().authenticated()
