@@ -1,78 +1,97 @@
 package com.caprocoo.ob.config;
-import com.caprocoo.ob.common.JwtAccessDeniedHandler;
-import com.caprocoo.ob.common.JwtAuthenticationEntryPoint;
-import com.caprocoo.ob.common.JwtSecurityConfig;
-import com.caprocoo.ob.common.TokenProvider;
+
+
+import com.caprocoo.ob.jwt.JwtAccessDeniedHandler;
+import com.caprocoo.ob.jwt.JwtAuthenticationEntryPoint;
+import com.caprocoo.ob.jwt.JwtSecurityConfig;
+import com.caprocoo.ob.jwt.TokenProvider;
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-
-import lombok.RequiredArgsConstructor;
-
-/**
- * packageName    : com.caprocoo.ob.config
- * fileName       : SecurityConfig
- * author         : caprocoo
- * date           : 2022-12-28
- * description    :
- * ===========================================================
- * DATE              AUTHOR             NOTE
- * -----------------------------------------------------------
- * 2022-12-28        caprocoo       최초 생성
- */
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.WebApplicationInitializer;
+import org.springframework.web.filter.CorsFilter;
 
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
-@RequiredArgsConstructor
-public class SecurityConfig {
+@EnableMethodSecurity
+@Configuration
 
+public class SecurityConfig {
     private final TokenProvider tokenProvider;
+    private final CorsFilter corsFilter;
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
+
+    public SecurityConfig(
+            TokenProvider tokenProvider,
+            CorsFilter corsFilter,
+            JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint,
+            JwtAccessDeniedHandler jwtAccessDeniedHandler
+    ) {
+        this.tokenProvider = tokenProvider;
+        this.corsFilter = corsFilter;
+        this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
+        this.jwtAccessDeniedHandler = jwtAccessDeniedHandler;
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+
+//    @Bean
+//    public WebSecurityCustomizer webSecurityCustomizer(){
+//        return (web) -> web.ignoring()
+//                .antMatchers("/favicon.ico", "**/resources/**", "**/static/**","**/webjars/**");
+//    }
+
+
     @Bean
-    public WebSecurityCustomizer webSecurityCustomizer(){
-        return (web) -> web.ignoring()
-                .antMatchers("/favicon.ico");
-    }
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http
+    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+
+
+        httpSecurity
+                // token을 사용하는 방식이기 때문에 csrf를 disable합니다.
                 .csrf().disable()
 
-                /**401, 403 Exception 핸들링 */
+                .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
+
                 .exceptionHandling()
                 .authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 .accessDeniedHandler(jwtAccessDeniedHandler)
 
-                /**세션 사용하지 않음*/
+                // enable h2-console
+                .and()
+                .headers()
+                .frameOptions()
+                .sameOrigin()
+
+                // 세션을 사용하지 않기 때문에 STATELESS로 설정
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
-                /** HttpServletRequest를 사용하는 요청들에 대한 접근 제한 설정*/
                 .and()
-                .authorizeRequests()
-                .antMatchers("/h2-console").permitAll()
-                .antMatchers("/main").authenticated()
-                .antMatchers("/auth/login").authenticated()
-                .antMatchers("/member/join").authenticated()
+                .authorizeHttpRequests()
+                .antMatchers("/auth/authenticate").permitAll()
+                .antMatchers("/album").permitAll()
+                .antMatchers("/resources/**", "/static/**", "/js/**", "/css/**", "/assets/**", "/img/**", "/favicon.ico", "/about/**", "/logos/**", "/portfolio/**","/team/**").permitAll()
+//                .requestMatchers(PathRequest.toH2Console()).permitAll()
+                .anyRequest().authenticated()
 
-                /**JwtSecurityConfig 적용 */
                 .and()
-                .apply(new JwtSecurityConfig(tokenProvider))
+                .apply(new JwtSecurityConfig(tokenProvider));
 
-                .and().build();
+        return httpSecurity.build();
     }
 }

@@ -1,13 +1,8 @@
-package com.caprocoo.ob.repository.rdb.account;
+package com.caprocoo.ob.entity.account;
 
-import com.caprocoo.ob.repository.CrudEntity;
-import com.caprocoo.ob.repository.rdb.authority.Authority;
 import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Set;
 
 /**
@@ -45,11 +40,14 @@ public class Account {
     @Column(name = "ACCOUNT_PWD", nullable = false)
     private String memberPwd;
     @Column(name = "ACTIVATED")
-    private String activated;
+    private char activated;
 
 
-    @OneToMany
-    @JoinColumn(name = "ACCOUNT_ID")
+    @ManyToMany
+    @JoinTable(
+            name = "user_authority",
+            joinColumns = {@JoinColumn(name = "ACCOUNT_ID", referencedColumnName = "ACCOUNT_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_NAME", referencedColumnName = "AUTHORITY_NAME")})
     private Set<Authority> authorities;
 
 

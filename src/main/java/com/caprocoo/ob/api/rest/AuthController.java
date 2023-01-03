@@ -1,13 +1,10 @@
 package com.caprocoo.ob.api.rest;
 
-import com.caprocoo.ob.common.JwtFilter;
-import com.caprocoo.ob.common.TokenProvider;
-import com.caprocoo.ob.service.account.AccountLoginDto;
-import com.caprocoo.ob.service.account.TokenDto;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-
+import com.caprocoo.ob.jwt.JwtFilter;
+import com.caprocoo.ob.jwt.TokenProvider;
+import com.caprocoo.ob.service.jwt.LoginDto;
+import com.caprocoo.ob.service.jwt.TokenDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +12,11 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
@@ -36,6 +36,7 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/auth")
 public class AuthController {
+
     private final TokenProvider tokenProvider;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
 
@@ -44,11 +45,11 @@ public class AuthController {
         this.authenticationManagerBuilder = authenticationManagerBuilder;
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<TokenDto> authorize(@Valid @RequestBody AccountLoginDto loginDto) {
+    @PostMapping("/authenticate")
+    public ResponseEntity<TokenDto> authorize(@Valid @RequestBody LoginDto loginDto) {
 
         UsernamePasswordAuthenticationToken authenticationToken =
-                new UsernamePasswordAuthenticationToken(loginDto.getMemberId(), loginDto.getPassword());
+                new UsernamePasswordAuthenticationToken(loginDto.getMemberId(), loginDto.getMemberPwd());
 
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -60,4 +61,5 @@ public class AuthController {
 
         return new ResponseEntity<>(new TokenDto(jwt), httpHeaders, HttpStatus.OK);
     }
+
 }

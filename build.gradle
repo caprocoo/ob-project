@@ -26,7 +26,7 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '2.5.2'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
 
 	// jsp
 	implementation "org.apache.tomcat.embed:tomcat-embed-jasper"
@@ -34,8 +34,8 @@ dependencies {
 	// live reload
 	implementation "org.springframework.boot:spring-boot-devtools"
 	// database
-//	implementation group: 'com.oracle.database.jdbc', name: 'ojdbc8', version: '21.1.0.0'
-	runtimeOnly 'com.h2database:h2'
+	implementation group: 'com.oracle.database.jdbc', name: 'ojdbc8', version: '21.1.0.0'
+//	runtimeOnly 'com.h2database:h2'
 	// jpa
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
@@ -45,7 +45,10 @@ dependencies {
 	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.5'
 
 	// spring security
-	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.7.5'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+
+
+
 
 
 }

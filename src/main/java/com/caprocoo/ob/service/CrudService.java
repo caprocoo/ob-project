@@ -2,8 +2,6 @@ package com.caprocoo.ob.service;
 
 import com.caprocoo.ob.exception.BackendException;
 import com.caprocoo.ob.repository.CrudRepository;
-import com.caprocoo.ob.repository.rdb.account.AccountRepository;
-import com.caprocoo.ob.service.account.AccountDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -424,9 +422,6 @@ public abstract class CrudService {
 
         Class clazz = null;
 
-        if (this.repository instanceof AccountRepository) {
-            clazz = AccountDto.class;
-        }
 
         if (clazz == null) {
             throw new BackendException("Dto Class 를 찾을 수 없음");
