@@ -34,16 +34,14 @@ import javax.validation.Valid;
 
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/auth")
 public class AuthController {
 
     private final TokenProvider tokenProvider;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
 
-    public AuthController(TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder) {
-        this.tokenProvider = tokenProvider;
-        this.authenticationManagerBuilder = authenticationManagerBuilder;
-    }
+
 
     @PostMapping("/login")
     public ResponseEntity<TokenDto> authorize(@Valid @RequestBody LoginDto loginDto) {
@@ -52,6 +50,7 @@ public class AuthController {
                 new UsernamePasswordAuthenticationToken(loginDto.getMemberId(), loginDto.getMemberPwd());
 
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String jwt = tokenProvider.createToken(authentication);

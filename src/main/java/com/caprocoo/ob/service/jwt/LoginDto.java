@@ -12,9 +12,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class LoginDto {
 
-   @NotNull
    private String memberId;
 
-   @NotNull
    private String memberPwd;
 }

@@ -24,7 +24,6 @@ import org.springframework.web.filter.CorsFilter;
 @EnableWebSecurity
 @EnableMethodSecurity
 @Configuration
-
 public class SecurityConfig {
     private final TokenProvider tokenProvider;
     private final CorsFilter corsFilter;
@@ -49,11 +48,6 @@ public class SecurityConfig {
     }
 
 
-//    @Bean
-//    public WebSecurityCustomizer webSecurityCustomizer(){
-//        return (web) -> web.ignoring()
-//                .antMatchers("/favicon.ico", "**/resources/**", "**/static/**","**/webjars/**");
-//    }
 
 
     @Bean
@@ -61,6 +55,7 @@ public class SecurityConfig {
 
 
         httpSecurity
+//                .cors().and()
                 // token을 사용하는 방식이기 때문에 csrf를 disable합니다.
                 .csrf().disable()
 
@@ -83,14 +78,15 @@ public class SecurityConfig {
 
                 .and()
                 .authorizeHttpRequests()
+                .antMatchers("/", "/**").permitAll()
                 .antMatchers("/main").permitAll()
-                .antMatchers("/auth/login").permitAll()
+                .antMatchers("/auth/login").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/account/**").permitAll()
                 .antMatchers("/album").permitAll()
                 //bootstrap, css, js 허가
                 .antMatchers("/resources/**", "/static/**", "/js/**", "/css/**", "/assets/**", "/img/**", "/favicon.ico", "/about/**", "/logos/**", "/portfolio/**","/team/**").permitAll()
 //                .requestMatchers(PathRequest.toH2Console()).permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
 
                 .and()
                 .apply(new JwtSecurityConfig(tokenProvider));

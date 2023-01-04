@@ -41,7 +41,7 @@ public class Account {
     @Column(name = "ACCOUNT_PWD", nullable = false)
     private String memberPwd;
     @Column(name = "ACTIVATED")
-    private char activated;
+    private Character activated;
 
 
     @ManyToMany
