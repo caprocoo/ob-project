@@ -4,7 +4,7 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 import java.util.List;
 
-import com.caprocoo.ob.service.jwt.ErrorDto;
+import com.caprocoo.ob.dto.jwt.ErrorDto;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.validation.BindingResult;

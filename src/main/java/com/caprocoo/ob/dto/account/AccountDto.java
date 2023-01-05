@@ -1,10 +1,9 @@
-package com.caprocoo.ob.service.jwt;
+package com.caprocoo.ob.dto.account;
 
 import com.caprocoo.ob.entity.account.Account;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
-import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 import java.util.stream.Collectors;

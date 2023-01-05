@@ -1,10 +1,13 @@
 package com.caprocoo.ob.api.rest;
 
+import com.caprocoo.ob.dto.album.AlbumDto;
+import com.caprocoo.ob.service.album.AlbumService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 
 /**
@@ -20,12 +23,37 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 @RequestMapping("/album")
+@RequiredArgsConstructor
+@Slf4j
 public class AlbumController {
+    private final AlbumService albumService;
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String albumHome(Model model){
 
         return "album/main";
     }
+
+
+    @RequestMapping(value = "{seq}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String getAlbumSeq(@PathVariable(value = "seq") long seq, Model model){
+
+        AlbumDto albumDetail = albumService.findByAlbumSeq(seq);
+        model.addAttribute("getAlbum", albumDetail.);
+
+        return "album/detail";
+
+    }
+
+    @RequestMapping(value = "/insert", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String insertAlbum(@RequestBody AlbumDto albumDto, Model model) {
+
+        albumService.saveAlbum(albumDto);
+
+
+        return "album/insert";
+
+    }
+
 
 }

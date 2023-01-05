@@ -6,9 +6,8 @@ import com.caprocoo.ob.exception.NotFoundMemberException;
 import com.caprocoo.ob.repository.rdb.account.AccountRepository;
 import com.caprocoo.ob.entity.account.Account;
 import java.util.Collections;
-import java.util.Optional;
 
-import com.caprocoo.ob.service.jwt.AccountDto;
+import com.caprocoo.ob.dto.account.AccountDto;
 import com.caprocoo.ob.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

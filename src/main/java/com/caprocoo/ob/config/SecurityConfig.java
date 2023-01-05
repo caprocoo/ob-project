@@ -5,20 +5,16 @@ import com.caprocoo.ob.jwt.JwtAccessDeniedHandler;
 import com.caprocoo.ob.jwt.JwtAuthenticationEntryPoint;
 import com.caprocoo.ob.jwt.JwtSecurityConfig;
 import com.caprocoo.ob.jwt.TokenProvider;
-import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.filter.CorsFilter;
 
 @EnableWebSecurity
@@ -29,6 +25,8 @@ public class SecurityConfig {
     private final CorsFilter corsFilter;
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
+
+
 
     public SecurityConfig(
             TokenProvider tokenProvider,
@@ -46,9 +44,6 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-
-
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
@@ -82,7 +77,6 @@ public class SecurityConfig {
                 .antMatchers("/main").permitAll()
                 .antMatchers("/auth/login").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/account/**").permitAll()
-                .antMatchers("/album").permitAll()
                 //bootstrap, css, js 허가
                 .antMatchers("/resources/**", "/static/**", "/js/**", "/css/**", "/assets/**", "/img/**", "/favicon.ico", "/about/**", "/logos/**", "/portfolio/**","/team/**").permitAll()
 //                .requestMatchers(PathRequest.toH2Console()).permitAll()

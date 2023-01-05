@@ -1,15 +1,12 @@
 package com.caprocoo.ob.api.rest;
 
-import com.caprocoo.ob.api.ApiResponseDto;
-import com.caprocoo.ob.exception.BackendException;
 import com.caprocoo.ob.service.account.AccountService;
-import com.caprocoo.ob.service.jwt.AccountDto;
+import com.caprocoo.ob.dto.account.AccountDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

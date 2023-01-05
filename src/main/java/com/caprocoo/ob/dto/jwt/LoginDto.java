@@ -1,4 +1,4 @@
-package com.caprocoo.ob.service.jwt;
+package com.caprocoo.ob.dto.jwt;
 
 import lombok.*;
 

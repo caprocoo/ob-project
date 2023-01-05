@@ -5,7 +5,7 @@ import static org.springframework.http.HttpStatus.FORBIDDEN;
 
 import com.caprocoo.ob.exception.DuplicateMemberException;
 import com.caprocoo.ob.exception.NotFoundMemberException;
-import com.caprocoo.ob.service.jwt.ErrorDto;
+import com.caprocoo.ob.dto.jwt.ErrorDto;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

@@ -2,8 +2,8 @@ package com.caprocoo.ob.api.rest;
 
 import com.caprocoo.ob.jwt.JwtFilter;
 import com.caprocoo.ob.jwt.TokenProvider;
-import com.caprocoo.ob.service.jwt.LoginDto;
-import com.caprocoo.ob.service.jwt.TokenDto;
+import com.caprocoo.ob.dto.jwt.LoginDto;
+import com.caprocoo.ob.dto.jwt.TokenDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -16,7 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
