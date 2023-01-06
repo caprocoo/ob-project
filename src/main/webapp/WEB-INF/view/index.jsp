@@ -18,7 +18,7 @@
 
 
 </head>
-<body id="page-top">
+<body id="page-top" data-sb-form-api-token="API_TOKEN">
 <%@include file="common/navbar.jsp" %>
 <!-- Masthead-->
 <header class="masthead">

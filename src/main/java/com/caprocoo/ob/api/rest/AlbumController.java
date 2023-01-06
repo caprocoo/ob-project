@@ -39,17 +39,21 @@ public class AlbumController {
     public String getAlbumSeq(@PathVariable(value = "seq") long seq, Model model){
 
         AlbumDto albumDetail = albumService.findByAlbumSeq(seq);
-        model.addAttribute("getAlbum", albumDetail.);
+
+        model.addAttribute("seq", albumDetail.getAlbumSeq());
+        model.addAttribute("title", albumDetail.getAlbumTitle());
+        model.addAttribute("content", albumDetail.getAlbumContent());
+        model.addAttribute("accountId", albumDetail.getAccountId());
+        model.addAttribute("viewCnt", albumDetail.getAlbumViewCnt());
 
         return "album/detail";
 
     }
 
     @RequestMapping(value = "/insert", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public String insertAlbum(@RequestBody AlbumDto albumDto, Model model) {
+    public String insertAlbum(@RequestBody AlbumDto albumDto) {
 
         albumService.saveAlbum(albumDto);
-
 
         return "album/insert";
 

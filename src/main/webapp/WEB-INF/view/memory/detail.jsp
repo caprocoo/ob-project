@@ -23,6 +23,7 @@
 
 <section class="page-section bg-light" id="portfolio">
 seq : ${seq}
+type : ${type}
 title : ${title}
 content : ${content}
 id : ${accountId}

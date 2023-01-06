@@ -1,10 +1,9 @@
 package com.caprocoo.ob.entity.album;
 
-import com.caprocoo.ob.entity.account.Authority;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Set;
+import javax.validation.constraints.NotNull;
 
 /**
  * packageName    : com.caprocoo.ob.repository.rdb.album
@@ -38,12 +37,15 @@ public class Album {
     @Column(name = "SEQ", unique = true, nullable = false)
     private Long albumSeq;
 
+    @NotNull
     @Column(name = "TITLE")
     private String albumTitle;
 
+    @NotNull
     @Column(name = "CONTENT")
     private String albumContent;
 
+    @NotNull
     @Column(name = "ACCOUNT_ID")
     private String accountId;
 
